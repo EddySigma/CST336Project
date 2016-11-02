@@ -1,0 +1,29 @@
+songDB
+	songs
+		songName
+		artist
+		length
+		albumArt
+	catalog
+		songId
+		price
+		numDownloads
+	customer
+		shoppingCart
+		
+
+
+
+Php main page Will have two forms
+
+Query Form
+Submit form
+	
+
+When "Submit query" button is submitted
+results will be fetched and display
+
+When "Buy Now" button is submitted
+they will be redirected to another page to
+display results
+
