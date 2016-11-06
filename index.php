@@ -35,6 +35,32 @@
 		text-align: center;
 		background-color: white;
 	}
+	.box {
+   		position: relative;
+    	
+	}
+	
+	.box .text {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px;
+	}
+	
+	.box:hover .text{
+	visibility: visible;	
+	}
+
 </style>
 
 <?php
@@ -87,7 +113,7 @@
 			<tbody>
 			<?php
 
-				$sql = "SELECT albumLink, artistName, songName 
+				$sql = "SELECT * 
 				FROM songs " . $sort;
 				
 				$stmt = $dbConn -> prepare ($sql);
@@ -98,7 +124,7 @@
 					echo "<tr>";
 					echo "<td><img src='" . $row['albumLink']. "'></td>";
 					echo "<td>" . $row['artistName'] . "</td>";
-					echo "<td>" . $row['songName'] . "</td>";
+					echo "<td class='box'>" . $row['songName'] . "<span class='text'> <div>genre: " . $row['genre'] . "</div><div>length: " . $row['songLength'] . "</div></td>";
 					echo "<td>$" . rand(1,3) . ".99</td>"; 
 					echo "<td><input type='button' value='Add to Shopping Cart'></td>";
 				}
