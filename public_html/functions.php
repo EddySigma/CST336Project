@@ -24,7 +24,7 @@ function displayData($dbConn,$sql)
 	$stmt = $dbConn -> prepare ($sql);
 	$stmt -> execute ();
 
-	echo "<table border=2px;>";
+	echo "<table border=1px;>";
 
 	if( !($stmt -> fetch()) )
 		echo "<center><h1>Nothing found</h1></center>";
@@ -46,7 +46,7 @@ function displayShoppingCart($dbConn,$sql)
 	$stmt = $dbConn -> prepare ($sql);
 	$stmt -> execute ();
 
-	echo "<table border=2px;>";
+	echo "<table border=1px;>";
 
 	echo "<th>Song</th>
 		    <th>Artist</th>
@@ -113,7 +113,7 @@ function displayShoppingCart($dbConn,$sql)
 function printTable($stmt)
 {
 
-	echo "<table border=2px;>";
+	echo "<table border=1px;>";
 
 	echo printHeading();
 	$i = 1;
@@ -155,7 +155,7 @@ function printTable($stmt)
 		<td>$artist</td>
 		<td>$genre</td>
 		<td>$$price</td>
-		<td><input type='checkbox' name='songs[]' value=$songID></td>
+		<td><center><input type='checkbox' name='songs[]' value=$songID><center></td>
 		</tr>";
 		$i++;
 	}

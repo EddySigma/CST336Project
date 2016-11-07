@@ -72,6 +72,8 @@ $sql = "SELECT Songs.name,
 
 if (isset($_POST['submit']) && atLeastOne())
 {
+
+
 	$genreSet = false;
 	if (isset($_POST['genre']) && $_POST['genre'] != "")
 	{
@@ -81,8 +83,12 @@ if (isset($_POST['submit']) && atLeastOne())
 
 	if (isset($_POST['artistName']) && $_POST['artistName'] != "")
 	{
-		if ($genreSet) $sql.= " AND ";
-		$sql.= " WHERE Songs.artist='" . $_POST['artistName'] . "'";
+		if ($genreSet) 
+		{
+               		$sql.= " AND Songs.artist='" . $_POST['artistName'] . "'";
+		}
+		else
+			$sql.= " WHERE Songs.artist='" . $_POST['artistName'] . "'";
 	}
 
 	if (isset($_POST['sortPrice']))
