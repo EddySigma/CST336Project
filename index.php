@@ -1,150 +1,135 @@
+<?php
+session_start();
+
+if (isset($_POST['songs']))
+{
+	$_SESSION['shoppingCart'] = $_POST['songs'];
+	header("Location: process.php");
+}
+
+?>
 
 
 <html>
-<title>Music Store</title>
+<title>Online Store</title>
 <style>
-img {
-width:100px;
-height:100px;
-
-}
 table {
   width:500px;
   margin: 10px auto;
   height:auto;
   width:auto;
- 
-	background-color:white;
-
 }
 
 
-.centerIt
+#list, .show {display: none; }
+.hide:focus + .show {display: inline; }
+.hide:focus { display: none; }
+.hide:focus ~ #list { display:block; }
 
+img
 {
-	text-align:center;
-
+	width:150px;
+	height:150px;
 }
 
-.myButton {
-	text-align:center;
-	
+ul {
+  list-style-type: none;
 }
-
-
- body{
-
-    background-image: url("http://media.gettyimages.com/videos/grunge-music-background-blue-video-id473008825?s=640x640");
-
-   }
-   
- .heading
- {
-	 text-align:center;
-	 background-color:green;
- }
-
-.formBox 
-{
-	text-align:center;
-	background-color:white;
-}
-
 </style>
-
-</head>
-
 <body>
-<div class='heading'><h1>Top Singles - Shopping Cart</h1></div>
-<div class="centerIt"><form><table border=1px;>
-
-<div class='formBox'>
-
-Search Name: <input type="text" name="FirstName" value=""><br>
-Search Artist: <input type="text" name="LastName" value=" "><br>
+<center><h1>Top Singles - Online Store</h1></center>
+<center>
+<form action="" method="POST">
 
 
+Search artist: <input type="text" name="artistName">
 
+  Select Genre: <select name="genre">
+	   	<option disabled selected value> -- select an option -- </option>
 
+    <option value=1>Hip-Hop</option>
+    <option value=2>Rock</option>
+    <option value=3>Pop</option>
+    <option value=4>Country</option>
+  </select>
 
-Max Length (in minutes): <input type="text" name="LastName" value=""><br>
-<input type="submit" value="Submit">
-</div>	
+   Sort by price: <select name="sortPrice">
+	   	<option disabled selected value> -- select an option -- </option>
 
+    <option value="desc">high-low</option>
+    <option value="asc">low-high</option>
+  </select>
+
+  <br /><br />
+  <center><input type="submit" name="submit" value="Submit Query">
+</form>
+</center>
+<!--
+FORM SEARCH - END
+-->
 <?php
+include ('functions.php');
+
+$dbConn = connectToDatabase();
+
+// base sql
+
+$sql = "SELECT Songs.name,
+				Songs.artist,
+				Songs.length,
+				Genres.genre,
+				Catalog.price,
+				Catalog.songID,
+				Catalog.pictureLink
+				FROM Songs
+				INNER JOIN Genres ON Genres.genreID = Songs.genreID
+				INNER JOIN Catalog ON Catalog.songID = Songs.songID";
+
+// Check to see if button was pressed and atleast one option
+// was selected
+
+if (isset($_POST['submit']) && atLeastOne())
+{
+	$genreSet = false;
+	if (isset($_POST['genre']) && $_POST['genre'] != "")
+	{
+		echo "genre selected";
+		$sql.= " WHERE Genres.genreID=" . $_POST['genre'];
+		$genreSet = true;
+	}
+
+	if (isset($_POST['artistName']) && $_POST['artistName'] != "")
+	{
+		echo $_POST['artistName'];
+		if ($genreSet) $sql.= " AND ";
+		$sql.= " WHERE Songs.artist='" . $_POST['artistName'] . "'";
+	}
+
+	if (isset($_POST['sortPrice']))
+	{
+		echo "somethign selected";
+		$sql.= " ORDER BY price " . $_POST['sortPrice'];
+	}
+}
+
+$do = $_SERVER['PHP_SELF'];
+echo "<form method='POST' action='" . htmlspecialchars($do) . "'>";
+displayData($dbConn, $sql);
+echo "<input type='submit' name='buy' value='Buy Now'>";
+echo "</form>";
+
+function atLeastOne()
+{
 
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "yourPassWordHere";
-	
-	
-	// dbName = songDB
-	
-	$dbConn = new PDO("mysql:host=$servername;dbname=songDB", $username, $password);
-	// set the PDO error mode to exception
-	$dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$sql = "SELECT * FROM songs ORDER BY artistName";
-	$stmt = $dbConn -> prepare ($sql);
-	$stmt -> execute ();
-	
+ return isset($_POST['genre']) || isset($_POST['sortPrice']) 
+							 || isset($_POST['artistName']);
+
+}
 
 
-	    echo "<table border=2px;>";
-	    $i = 1;
-	    
-		$labels = array('Album Art','Artist','Song Name','Genre','Length','Price','Add to Shopping Cart');
-		
-		for($i = 0; $i < count($labels); $i++)
-			echo "<th>".$labels[$i]."</th>";
-
-        while ($row = $stmt -> fetch()) {
-			
-			echo "<tr>";
-			
-			if($i % count($labels) == 0)
-			{
-				echo "</tr><tr>";
-			}
-			//` (`albumLink` `artistName`  `songName`  `genre`  `songLength`  );
-			//var_dump($row);
-			echo "<td><img src='". $row['albumLink']. "'></td>";
-			echo "<td>". $row['artistName'] . "</td>";
-			echo "<td>".$row['songName']."</td>";
-			echo "<td>".$row['genre']."</td>";
-			echo "<td>".$row['songLength']."</td>";
-			echo "<td>$".rand(1,3). ".99</td>";
-			
-			$i++;
-			echo "<td><input type='checkbox'></td>";
-		}
-       echo "</table>";
-
-/*
-
-for i in range(40):
-    print('<tr>')
-
-    if((i + 1) % 3 == 0):
-        print('</tr><tr>')
-
-    openAndClose('<img src="' + pictureLinks[i] + '">')
-    openAndClose(artists[i])
-    openAndClose(songNames[i])
-    openAndClose(genres[randint(0,len(genres) - 1)])
-    openAndClose(str(randint(2,5)) + ":" + str(randint(10,59)))
-    openAndClose('<input type="checkbox">')
-
-
-print('</table></form></div></html>')
-*/
 
 
 ?>
-<div class='myButton'><button type="submit" form="nameform" value="Submit"  style="height:80px;width:180px">Buy Now </button></div>
-</form>
 </body>
-
 </html>
-
-
