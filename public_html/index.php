@@ -1,4 +1,6 @@
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 session_start();
 
 if (isset($_POST['songs']))
@@ -9,38 +11,18 @@ if (isset($_POST['songs']))
 
 ?>
 
-
 <html>
 <title>Online Store</title>
-<style>
-table {
-  width:500px;
-  margin: 10px auto;
-  height:auto;
-  width:auto;
-}
+<head>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
+</head>
+<link rel="stylesheet" type="text/css" href="css/theme.css">
 
-#list, .show {display: none; }
-.hide:focus + .show {display: inline; }
-.hide:focus { display: none; }
-.hide:focus ~ #list { display:block; }
-
-img
-{
-	width:150px;
-	height:150px;
-}
-
-ul {
-  list-style-type: none;
-}
-</style>
 <body>
 <center><h1>Top Singles - Online Store</h1></center>
 <center>
 <form action="" method="POST">
-
 
 Search artist: <input type="text" name="artistName">
 
@@ -93,21 +75,18 @@ if (isset($_POST['submit']) && atLeastOne())
 	$genreSet = false;
 	if (isset($_POST['genre']) && $_POST['genre'] != "")
 	{
-		echo "genre selected";
 		$sql.= " WHERE Genres.genreID=" . $_POST['genre'];
 		$genreSet = true;
 	}
 
 	if (isset($_POST['artistName']) && $_POST['artistName'] != "")
 	{
-		echo $_POST['artistName'];
 		if ($genreSet) $sql.= " AND ";
 		$sql.= " WHERE Songs.artist='" . $_POST['artistName'] . "'";
 	}
 
 	if (isset($_POST['sortPrice']))
 	{
-		echo "somethign selected";
 		$sql.= " ORDER BY price " . $_POST['sortPrice'];
 	}
 }
@@ -121,14 +100,10 @@ echo "</form>";
 function atLeastOne()
 {
 
-
- return isset($_POST['genre']) || isset($_POST['sortPrice']) 
+ return isset($_POST['genre']) || isset($_POST['sortPrice'])
 							 || isset($_POST['artistName']);
 
 }
-
-
-
 
 ?>
 </body>

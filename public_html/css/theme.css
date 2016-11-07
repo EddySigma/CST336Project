@@ -1,0 +1,35 @@
+table {
+  width:500px;
+  margin: 10px auto;
+  height:auto;
+  width:auto;
+}
+
+
+#list, .show {display: none; }
+.hide:focus + .show {display: inline; }
+.hide:focus { display: none; }
+.hide:focus ~ #list { display:block; }
+
+
+img
+{
+	width:150px;
+	height:150px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+
+.hidden{
+       display:none;
+}
+
+
+/* visited link */
+a:visited {
+    color: blue;
+}

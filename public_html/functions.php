@@ -1,19 +1,13 @@
-
-
 <?php
-
 
 // Used to connect to database.
 // Edit as needed
 function connectToDatabase()
 {
-	
-	// edit this as needed
-	
 	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbName = "MusicStore";
+	$username = "vega3229";
+	$password = "02b85dfa63430d3";
+	$dbName = "vega3229";
 
 	$dbConn = new PDO("mysql:host=$servername;dbname=$dbName",
 						$username, $password);
@@ -24,55 +18,52 @@ function connectToDatabase()
 	return $dbConn;
 }
 
-
-
 function displayData($dbConn,$sql)
 {
-	
+
 	$stmt = $dbConn -> prepare ($sql);
 	$stmt -> execute ();
 
 	echo "<table border=2px;>";
-	
-	
-	
+
 	if( !($stmt -> fetch()) )
 		echo "<center><h1>Nothing found</h1></center>";
-		
-	else 
+
+	else
 	{
 
 		// need a work around for this
 		$stmt = $dbConn -> prepare ($sql);
 		$stmt -> execute ();
-	
+
 		printTable($stmt);
 	}
 }
 
 function displayShoppingCart($dbConn,$sql)
 {
-	
+
 	$stmt = $dbConn -> prepare ($sql);
 	$stmt -> execute ();
 
 	echo "<table border=2px;>";
-	
+
 	echo "<th>Song</th>
 		    <th>Artist</th>
 		    <th>Genre</th>
 		    <th>Price</th>";
-	
+
 	if( !($stmt -> fetch()) )
 		echo "<center><h1>Nothing found</h1></center>";
-		
-	else 
+
+	else
 	{
 
 	// need a work around for this
 	$stmt = $dbConn -> prepare ($sql);
 	$stmt -> execute ();
 	$total = 0;
+	$i = 1;
 	while ( $row = $stmt -> fetch() )
 	{
 		$name =  $row['name'];
@@ -84,36 +75,38 @@ function displayShoppingCart($dbConn,$sql)
 		$length = $row['length'];
 		$total += floatval($price);
 		echo "<tr>
-		<div>
+		
 
 		<td>
-		<a href='#' class='hide'>$name</a>
-		<a href='#' class='show'>$name</a>
-		<ul id='list'>
-		
-	
-    <li><center><img src='$picLink'></center></li>
-    <li>Length: $length </li>
 
-		</ul>
 
-		</div>
-		
+			
+			<a id='showhide$i' href>$name</a>
+			<div id='trace-form$i' class='hidden'>
+				<center><img src='$picLink'></center>
+				Length: $length
+			</div>
+			<script>
+			$(\"#showhide$i\").click(function (event) {
+			    event.preventDefault();
+			    $(\"#trace-form$i\").toggle();
+			});
+			</script>
+
 		</td>
-	
-		
+
 		<td>$artist</td>
 		<td>$genre</td>
 		<td>$$price</td>
 		</tr>";
+		
+		$i++;
 	}
-	
 
+	echo "</table>";
 
-	echo "</table></div>";
-	   
 	}
-	
+
 	return $total;
 }
 
@@ -121,10 +114,9 @@ function printTable($stmt)
 {
 
 	echo "<table border=2px;>";
-	
+
 	echo printHeading();
-	
-	
+	$i = 1;
 	while ( $row = $stmt -> fetch() )
 	{
 		$name =  $row['name'];
@@ -134,35 +126,41 @@ function printTable($stmt)
 		$songID = $row['songID'];
 		$picLink = $row['pictureLink'];
 		$length = $row['length'];
-		
+
+
+
+
 		echo "<tr>
-		<div>
 
 		<td>
-		<a href='#' class='hide'>$name</a>
-		<a href='#' class='show'>$name</a>
-		<ul id='list'>
 		
-	
-    <li><center><img src='$picLink'></center></li>
-    <li>Length: $length </li>
 
-		</ul>
 
-		</div>
+			
+			<a id='showhide$i' href>$name</a>
+			<div id='trace-form$i' class='hidden'>
+				<center><img src='$picLink'></center>
+				Length: $length
+			</div>
+			<script>
+			$(\"#showhide$i\").click(function (event) {
+			    event.preventDefault();
+			    $(\"#trace-form$i\").toggle();
+			});
+			</script>
 		
+
 		</td>
-	
-		
+
 		<td>$artist</td>
 		<td>$genre</td>
 		<td>$$price</td>
 		<td><input type='checkbox' name='songs[]' value=$songID></td>
 		</tr>";
+		$i++;
 	}
 
-	echo "</table></div>";
-	   
+	echo "</table>";
 
 }
 
@@ -175,5 +173,4 @@ function printHeading()
 		    <th>Add to shopping cart</th>";
 }
 ?>
-
 
