@@ -5,9 +5,9 @@
 function connectToDatabase()
 {
 	$servername = "localhost";
-	$username = "vega3229";
-	$password = "02b85dfa63430d3";
-	$dbName = "vega3229";
+	$username = "root";
+	$password = "fuckyeah";
+	$dbName = "MusicStore";
 
 	$dbConn = new PDO("mysql:host=$servername;dbname=$dbName",
 						$username, $password);
@@ -80,18 +80,13 @@ function displayShoppingCart($dbConn,$sql)
 		<td>
 
 
-			
-			<a id='showhide$i' href>$name</a>
-			<div id='trace-form$i' class='hidden'>
-				<center><img src='$picLink'></center>
-				&emsp;Length:&nbsp;$length&nbsp;
-			</div>
-			<script>
-			$(\"#showhide$i\").click(function (event) {
-			    event.preventDefault();
-			    $(\"#trace-form$i\").toggle();
-			});
-			</script>
+<label class='collapse' for='_$i'>$name </label>
+<input id='_$i' type='checkbox'> 
+<div>
+	<center><img src='$picLink'></center>
+	&emsp;Length:&nbsp;$length&nbsp; 
+</div>
+
 
 		</td>
 
@@ -134,21 +129,14 @@ function printTable($stmt)
 
 		<td>
 		
-
+<label class='collapse' for='_$i'>$name </label>
+<input id='_$i' type='checkbox'> 
+<div>
+	<center><img src='$picLink'></center>
+	&emsp;Length:&nbsp;$length&nbsp; 
+</div>
 
 			
-			<a id='showhide$i' href>$name</a>
-			<div id='trace-form$i' class='hidden'>
-				<center><img src='$picLink'></center>
-				&emsp;Length:&nbsp;$length&nbsp;  
-			</div>
-			<script>
-			$(\"#showhide$i\").click(function (event) {
-			    event.preventDefault();
-			    $(\"#trace-form$i\").toggle();
-			});
-			</script>
-		
 
 		</td>
 

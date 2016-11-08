@@ -6,8 +6,8 @@
 
 <html>
 <head>
-<link rel="icon" 
-      type="image/png" 
+<link rel="icon"
+      type="image/png"
       href="images/favicon.ico">
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -22,14 +22,17 @@
 
 	include('functions.php');
 	$dbConn = connectToDatabase();
-
+	
+	// using sessions
 	$songs = $_SESSION['shoppingCart'];
+	
 	if(count($songs) == 0)
 		echo "<center><h1>Nothing selected</h1></center>";
 
 	else
 	{
 
+		// to get the songs that were selected
 		$placeholders  = implode(",",$songs);
 
 		$sql = "SELECT Songs.name,

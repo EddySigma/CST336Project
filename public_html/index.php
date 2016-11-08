@@ -14,8 +14,8 @@ if (isset($_POST['songs']))
 <html>
 <title>Online Store</title>
 <head>
-<link rel="icon" 
-      type="image/png" 
+<link rel="icon"
+      type="image/png"
       href="images/favicon.ico">
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -25,6 +25,10 @@ if (isset($_POST['songs']))
 <body>
 <center><h1>Top Singles - Online Store</h1></center>
 <center>
+
+<!--
+FORM SEARCH - BEGIN
+-->
 <form action="" method="POST">
 
 Search artist: <input type="text" name="artistName">
@@ -73,13 +77,12 @@ $sql = "SELECT Songs.name,
 // Check to see if button was pressed and atleast one option
 // was selected
 
-
 	$genreSet = false;
 	$doDefault = true;
 
+// Logic to deal with queries selected
 if (isset($_POST['submit']) && atLeastOne())
 {
-
 
 	if (isset($_POST['genre']) && $_POST['genre'] != "")
 	{
@@ -90,7 +93,7 @@ if (isset($_POST['submit']) && atLeastOne())
 	if (isset($_POST['artistName']) && $_POST['artistName'] != "")
 	{
 		$doDefault = false;
-		if ($genreSet) 
+		if ($genreSet)
 		{
                		$sql.= " AND Songs.artist='" . $_POST['artistName'] . "'";
 		}
@@ -113,6 +116,7 @@ if($doDefault && !$genreSet)
 displayData($dbConn, $sql);
 echo "<input type='submit' name='buy' value='Buy Now'>";
 echo "</form>";
+
 
 function atLeastOne()
 {
