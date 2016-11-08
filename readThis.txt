@@ -1,0 +1,8 @@
+data was scraped from the site mentioned dataScrapeFrom.txt
+
+
+The prices were generating randomly as well as the genres
+
+The info is semi-real, so if it inaccurate, is is intentional
+
+

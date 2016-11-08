@@ -11,7 +11,7 @@
       href="images/favicon.ico">
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-<title>Process</title>
+<title>Shopping Cart</title>
 <link rel="stylesheet" type="text/css" href="css/theme.css">
 
 </head>
