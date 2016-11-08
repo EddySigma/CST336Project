@@ -6,10 +6,12 @@
 
 <html>
 <head>
+<link rel="icon" 
+      type="image/png" 
+      href="images/favicon.ico">
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <title>Process</title>
-<link href="images/favicon.ico" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/theme.css">
 
 </head>

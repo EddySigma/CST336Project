@@ -14,8 +14,11 @@ table {
 
 img
 {
-	width:150px;
-	height:150px;
+margin: 6px 12px 6px 0px;
+width: 120px;
+height: 120px;
+border:1px solid #021a40;
+    opacity: 0.8;
 }
 
 ul {

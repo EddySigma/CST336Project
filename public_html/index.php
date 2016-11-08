@@ -14,6 +14,9 @@ if (isset($_POST['songs']))
 <html>
 <title>Online Store</title>
 <head>
+<link rel="icon" 
+      type="image/png" 
+      href="images/favicon.ico">
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 </head>
@@ -70,12 +73,14 @@ $sql = "SELECT Songs.name,
 // Check to see if button was pressed and atleast one option
 // was selected
 
+
+	$genreSet = false;
+	$doDefault = true;
+
 if (isset($_POST['submit']) && atLeastOne())
 {
 
 
-	$genreSet = false;
-	$doDefault = true;
 	if (isset($_POST['genre']) && $_POST['genre'] != "")
 	{
 		$sql.= " WHERE Genres.genreID=" . $_POST['genre'];

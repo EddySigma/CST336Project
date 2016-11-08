@@ -84,7 +84,7 @@ function displayShoppingCart($dbConn,$sql)
 			<a id='showhide$i' href>$name</a>
 			<div id='trace-form$i' class='hidden'>
 				<center><img src='$picLink'></center>
-				Length: $length
+				&emsp;Length:&nbsp;$length&nbsp;
 			</div>
 			<script>
 			$(\"#showhide$i\").click(function (event) {
@@ -140,7 +140,7 @@ function printTable($stmt)
 			<a id='showhide$i' href>$name</a>
 			<div id='trace-form$i' class='hidden'>
 				<center><img src='$picLink'></center>
-				Length: $length
+				&emsp;Length:&nbsp;$length&nbsp;  
 			</div>
 			<script>
 			$(\"#showhide$i\").click(function (event) {
