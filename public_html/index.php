@@ -65,7 +65,7 @@ $sql = "SELECT Songs.name,
 				Catalog.pictureLink
 				FROM Songs
 				INNER JOIN Genres ON Genres.genreID = Songs.genreID
-				INNER JOIN Catalog ON Catalog.songID = Songs.songID ORDER BY Songs.name";
+				INNER JOIN Catalog ON Catalog.songID = Songs.songID";
 
 // Check to see if button was pressed and atleast one option
 // was selected
@@ -75,6 +75,7 @@ if (isset($_POST['submit']) && atLeastOne())
 
 
 	$genreSet = false;
+	$doDefault = true;
 	if (isset($_POST['genre']) && $_POST['genre'] != "")
 	{
 		$sql.= " WHERE Genres.genreID=" . $_POST['genre'];
@@ -83,6 +84,7 @@ if (isset($_POST['submit']) && atLeastOne())
 
 	if (isset($_POST['artistName']) && $_POST['artistName'] != "")
 	{
+		$doDefault = false;
 		if ($genreSet) 
 		{
                		$sql.= " AND Songs.artist='" . $_POST['artistName'] . "'";
@@ -93,12 +95,16 @@ if (isset($_POST['submit']) && atLeastOne())
 
 	if (isset($_POST['sortPrice']))
 	{
+		$doDefault = false;
 		$sql.= " ORDER BY price " . $_POST['sortPrice'];
 	}
 }
 
 $do = $_SERVER['PHP_SELF'];
 echo "<form method='POST' action='" . htmlspecialchars($do) . "'>";
+if($doDefault && !$genreSet)
+	$sql .= " ORDER BY Songs.name";
+
 displayData($dbConn, $sql);
 echo "<input type='submit' name='buy' value='Buy Now'>";
 echo "</form>";
