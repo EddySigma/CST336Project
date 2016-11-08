@@ -42,7 +42,6 @@
 	
 	.box .text {
     visibility: hidden;
-    width: 120px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -65,6 +64,7 @@
 
 <?php
 
+	session_start();
 
 	$servername = "localhost";
 	$username = "root";
@@ -84,9 +84,30 @@
     
 
 ?>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
 </head>
 
 <body>
+	<div class="navbar-header">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li <?php echo $page_title=="Products" ? "class='active'" : ""; ?> >
+                    <a href="index.php">Products</a>
+                </li>
+                <li <?php echo $page_title=="Cart" ? "class='active'" : ""; ?> >
+                    <a href="cart.php">
+                        <?php
+                        // count products in cart
+                        $cart_count=count($_SESSION['cart_items']);
+                        ?>
+                        Cart <span class="badge" id="comparison-count"><?php echo $cart_count; ?></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 	<div class='heading'>
 		<h1>Top Singles - Shopping Cart</h1>
 	</div>
