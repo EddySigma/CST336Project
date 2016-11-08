@@ -65,7 +65,7 @@ $sql = "SELECT Songs.name,
 				Catalog.pictureLink
 				FROM Songs
 				INNER JOIN Genres ON Genres.genreID = Songs.genreID
-				INNER JOIN Catalog ON Catalog.songID = Songs.songID";
+				INNER JOIN Catalog ON Catalog.songID = Songs.songID ORDER BY Songs.name";
 
 // Check to see if button was pressed and atleast one option
 // was selected
