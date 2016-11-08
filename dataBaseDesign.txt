@@ -1,23 +1,28 @@
-songDB
-	songs
+MusicStore
+	Songs
+		songId  (primary key)
 		songName
 		artist
+		genreID (foreign key)
 		length
-		albumArt
-	catalog
-		songId
+		
+	Catalog
+		songId (foreign key)
 		price
-		numDownloads
-	customer
-		shoppingCart
+		pictureOfProduct
+	Genres
+		genreId (primary key)
+		genre
 		
 
 
 
 Php main page Will have two forms
 
-Query Form
-Submit form
+Query Form - 3 options available to filter from
+
+Submit form - checkbox to select the items they wish
+		to purchase
 	
 
 When "Submit query" button is submitted

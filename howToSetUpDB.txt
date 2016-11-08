@@ -1,0 +1,14 @@
+1. create a database called MusicStore in mysql
+
+2. type the following into terminal 
+	mysql -u userName -p  MusicStore< commands.sql
+
+	- for userName just replace with yours
+	- enter password when prompted
+
+3. Database has been created and records have been inputted
+
+4. in the functions.php edit the function that connects to the database
+   input your username and password.
+
+5. launch the index.php to view it
