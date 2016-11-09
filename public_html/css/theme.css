@@ -11,6 +11,12 @@ table {
 .hide:focus { display: none; }
 .hide:focus ~ #list { display:block; }
 
+label
+{
+	text-decoration:underline;
+	 color: #5100ff;
+}
+
 
 img
 {
