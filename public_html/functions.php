@@ -5,8 +5,8 @@
 function connectToDatabase()
 {
 	$servername = "localhost";
-	$username = "root";
-	$password = "no";
+	$username = "garc2155";
+	$password = "";
 	$dbName = "MusicStore";
 
 	$dbConn = new PDO("mysql:host=$servername;dbname=$dbName",
@@ -31,11 +31,9 @@ function displayData($dbConn,$sql)
 
 	else
 	{
-
 		// need a work around for this
 		$stmt = $dbConn -> prepare ($sql);
 		$stmt -> execute ();
-
 		printTable($stmt);
 	}
 }
@@ -122,21 +120,16 @@ function printTable($stmt)
 		$picLink = $row['pictureLink'];
 		$length = $row['length'];
 
-
-
-
 		echo "<tr>
 
 		<td>
 		
-<label class='collapse' for='_$i'>$name </label>
-<input id='_$i' type='checkbox'> 
-<div>
-	<center><img src='$picLink'></center>
-	&emsp;Length:&nbsp;$length&nbsp; 
-</div>
-
-			
+		<label class='collapse' for='_$i'>$name </label>
+		<input id='_$i' type='checkbox'> 
+		<div>
+			<center><img src='$picLink'></center>
+			&emsp;Length:&nbsp;$length&nbsp; 
+		</div>
 
 		</td>
 
@@ -151,6 +144,25 @@ function printTable($stmt)
 	echo "</table>";
 
 }
+
+// functio otherFunction($stmt) {
+// 	while ( $row = $stmt -> fetch() )
+// 	{
+// 		$name =  $row['name'];
+// 		$artist = $row['artist'];
+// 		$genre = $row['genre'];
+// 		$price = $row['price'];
+// 		$songID = $row['songID'];
+// 		$picLink = $row['pictureLink'];
+// 		$length = $row['length'];
+	
+// 		echo "<div class='songContainer'>";
+		
+		
+		
+// 		echo "</div>";
+// 	}
+// }
 
 function printHeading()
 {
