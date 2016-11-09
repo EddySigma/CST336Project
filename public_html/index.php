@@ -3,11 +3,16 @@ ini_set('session.cache_limiter','public');
 session_cache_limiter(false);
 session_start();
 
+
+
 if (isset($_POST['songs']))
 {
 	$_SESSION['shoppingCart'] = $_POST['songs'];
 	header("Location: process.php");
 }
+
+
+
 
 ?>
 
@@ -29,7 +34,7 @@ if (isset($_POST['songs']))
 <!--
 FORM SEARCH - BEGIN
 -->
-<form action="" method="POST">
+<form action="" method="POST"  >
 
 Search artist: <input type="text" name="artistName">
 

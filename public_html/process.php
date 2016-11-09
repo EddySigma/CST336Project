@@ -55,7 +55,8 @@
 ?>
 
 </div>
-<center><a href="index.php">Go back to Music Store</a></center>
+ 
+<center><a href="javascript:history.go(-1)">Go back to Music Store</center>
 </body>
 
 </html>
