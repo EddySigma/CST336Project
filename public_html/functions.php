@@ -35,6 +35,7 @@ function displayData($dbConn,$sql)
 		$stmt = $dbConn -> prepare ($sql);
 		$stmt -> execute ();
 		printTable($stmt);
+		//otherFunction($stmt);
 	}
 }
 
@@ -124,18 +125,20 @@ function printTable($stmt)
 
 		<td>
 		
+		<div class='songInfo'>
 		<label class='collapse' for='_$i'>$name </label>
 		<input id='_$i' type='checkbox'> 
-		<div>
+		<div class='detailedInfo'>
 			<center><img src='$picLink'></center>
-			&emsp;Length:&nbsp;$length&nbsp; 
+			&emsp;Length:&nbsp;$length&nbsp; <br />
+			&emsp;Length:&nbsp;$genre <br />
+			&emsp;Length:&nbsp;$$price <br />
+			
 		</div>
-
+		</div>
 		</td>
 
 		<td>$artist</td>
-		<td>$genre</td>
-		<td>$$price</td>
 		<td><center><input type='checkbox' name='songs[]' value=$songID><center></td>
 		</tr>";
 		$i++;
@@ -162,15 +165,15 @@ function printTable($stmt)
 		
 // 		echo "</div>";
 // 	}
-// }
+//}
 
 function printHeading()
 {
 	return "<th>Song</th>
 		    <th>Artist</th>
-		    <th>Genre</th>
-		    <th>Price</th>
-		    <th>Add to shopping cart</th>";
+		    "//<th>Genre</th>
+		    //<th>Price</th>
+		    ."<th>Add to shopping cart</th>";
 }
 ?>
 

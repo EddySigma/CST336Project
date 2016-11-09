@@ -123,10 +123,12 @@
 			
 			echo "<div class='songDisplay'>";
 			displayData($dbConn, $sql);
+			
+			echo "</form>";
+			echo "</div>";
+			
 			echo "<div class='submitSection'>";
 			echo "<input type='submit' name='buy' value='Buy Now'>";
-			echo "</div>";
-			echo "</form>";
 			echo "</div>";
 			
 			
