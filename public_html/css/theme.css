@@ -104,3 +104,15 @@ table.head tr td {
     overflow-y: auto;
 }
 
+.outer {
+	background-color:#911C16;
+}
+
+.box
+{
+	 width:100px;
+	background-color:white;
+	border-color:black;
+	border-style:solid;
+}
+

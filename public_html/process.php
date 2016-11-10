@@ -54,7 +54,7 @@
 		
 				$total = displayShoppingCart($dbConn,$sql);
 
-		echo "<center><h3 style='background-color:#911C16;'>Total:$$total</h3></center>";
+		echo "<div class='outer'><center><div class='box'>Total:$$total</div></center></div>";
 	}
 	
 	echo "<center><a href='javascript:history.go(-1)'><h3>Go back to Music Store</h3></center>";
