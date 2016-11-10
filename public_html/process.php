@@ -25,12 +25,6 @@
 	
 	// using sessions
 	$songs = $_SESSION['shoppingCart'];
-	
-	if(count($songs) == 0)
-		echo "<center><h1>Nothing selected</h1></center>";
-
-	else
-	{
 
 		// to get the songs that were selected
 		$placeholders  = implode(",",$songs);
@@ -47,16 +41,32 @@
 				INNER JOIN Catalog ON Catalog.songID = Songs.songID
 				WHERE Catalog.songID IN ($placeholders)";
 
-		echo "<center><h3>Here is your shopping cart</h3></center>";
-		$total = displayShoppingCart($dbConn,$sql);
-		echo "<center><h3>Total:$$total</h3></center>";
+		echo "<center><h2 style='background-color:#911C16;'>Here is your shopping cart</h2></center>";
+					echo "<div class='songDisplay'>";
 
+	if(count($songs) == 0)
+		echo "<center><h1>Nothing selected</h1></center>";
+		
+		
+			
+
+	else {
+		
+				$total = displayShoppingCart($dbConn,$sql);
+
+		echo "<center><h3 style='background-color:#911C16;'>Total:$$total</h3></center>";
 	}
+	
+	echo "<center><a href='javascript:history.go(-1)'><h3>Go back to Music Store</h3></center>";
+
+	echo "</div>";
+
+	
 ?>
 
 </div>
  
-<center><a href="javascript:history.go(-1)">Go back to Music Store</center>
 </body>
 
 </html>
+
