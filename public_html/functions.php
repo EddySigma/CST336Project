@@ -24,8 +24,6 @@ function displayData($dbConn,$sql)
 	$stmt = $dbConn -> prepare ($sql);
 	$stmt -> execute ();
 
-	echo "<table border=1px;>";
-
 	if( !($stmt -> fetch()) )
 		echo "<center><h1>Nothing found</h1></center>";
 
@@ -45,7 +43,7 @@ function displayShoppingCart($dbConn,$sql)
 	$stmt = $dbConn -> prepare ($sql);
 	$stmt -> execute ();
 
-	echo "<table border=1px;>";
+	echo "<table>";
 
 	echo "<th>Song</th>
 		    <th>Artist</th>
@@ -73,18 +71,15 @@ function displayShoppingCart($dbConn,$sql)
 		$picLink = $row['pictureLink'];
 		$length = $row['length'];
 		$total += floatval($price);
-		echo "<tr>
-		
-
-		<td>
+		echo "<tr><td>
 
 
-<label class='collapse' for='_$i'>$name </label>
-<input id='_$i' type='checkbox'> 
-<div>
-	<center><img src='$picLink'></center>
-	&emsp;Length:&nbsp;$length&nbsp; 
-</div>
+	<label class='collapse' for='_$i'>$name </label>
+	<input id='_$i' type='checkbox'> 
+	<div>
+		<center><img src='$picLink'></center>
+		&emsp;Length:&nbsp;$length&nbsp; 
+	</div>
 
 
 		</td>
@@ -106,10 +101,9 @@ function displayShoppingCart($dbConn,$sql)
 
 function printTable($stmt)
 {
+	echo "<table>";
 
-	echo "<table border=1px;>";
-
-	echo printHeading();
+	//echo printHeading();
 	$i = 1;
 	while ( $row = $stmt -> fetch() )
 	{
@@ -121,59 +115,42 @@ function printTable($stmt)
 		$picLink = $row['pictureLink'];
 		$length = $row['length'];
 
-		echo "<tr>
-
-		<td>
+		if($i%2 == 0) {
+			echo "<tr class='r2'>";
+		} else {
+			echo "<tr class='r1'>";
+		}
+		echo "<td>
 		
 		<div class='songInfo'>
-		<label class='collapse' for='_$i'>$name </label>
-		<input id='_$i' type='checkbox'> 
-		<div class='detailedInfo'>
-			<center><img src='$picLink'></center>
-			&emsp;Length:&nbsp;$length&nbsp; <br />
-			&emsp;Length:&nbsp;$genre <br />
-			&emsp;Length:&nbsp;$$price <br />
+			<div class='titleAndArtist'>
+				<label class='collapse' for='_$i'>&emsp;$name<br />
+				&emsp;by&nbsp;$artist</label>
 			
-		</div>
+				<input id='_$i' type='checkbox'> 
+				<div class='detailedInfo'>
+					<center><img src='$picLink'></center>
+					&emsp;Length:&nbsp;$length&nbsp; <br />
+					&emsp;Genre:&nbsp;$genre <br />
+					&emsp;$$price <br />
+				</div> 
+			</div>
 		</div>
 		</td>
-
-		<td>$artist</td>
+	
 		<td><center><input type='checkbox' name='songs[]' value=$songID><center></td>
 		</tr>";
 		$i++;
 	}
 
 	echo "</table>";
-
 }
 
-// functio otherFunction($stmt) {
-// 	while ( $row = $stmt -> fetch() )
-// 	{
-// 		$name =  $row['name'];
-// 		$artist = $row['artist'];
-// 		$genre = $row['genre'];
-// 		$price = $row['price'];
-// 		$songID = $row['songID'];
-// 		$picLink = $row['pictureLink'];
-// 		$length = $row['length'];
-	
-// 		echo "<div class='songContainer'>";
-		
-		
-		
-// 		echo "</div>";
-// 	}
-//}
 
 function printHeading()
 {
 	return "<th>Song</th>
-		    <th>Artist</th>
-		    "//<th>Genre</th>
-		    //<th>Price</th>
-		    ."<th>Add to shopping cart</th>";
+		    <th>Add To Cart</th>";
 }
 ?>
 

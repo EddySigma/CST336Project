@@ -2,7 +2,7 @@ table {
   margin: 10px auto;
   height:auto;
   width: auto;
-  border-style: hidden;
+  color: white;
 }
 
 
@@ -11,20 +11,20 @@ table {
 .hide:focus { display: none; }
 .hide:focus ~ #list { display:block; }
 
-label
-{
-	text-decoration:underline;
-	 color: #5100ff;
-}
+/*label*/ /* may want to uncomment this */
+/*{*/
+/*	text-decoration:underline;*/
+/*	 color: #5100ff;*/
+/*}*/
 
 
 img
 {
-  margin: 6px 12px 6px 0px;
   max-width: 200px;
   max-height: 200px;
   border:1px solid #021a40;
   opacity: 0.8;
+  margin: auto;
 }
 
 ul {
@@ -84,4 +84,37 @@ a:visited {
 
 body {
   background-image: url("../images/styling/hexBackground.jpg");
+}
+
+.songInfo {
+  text-decoration:none;
+}
+
+.tableContainer{
+  width: 350px;
+  height: 700px;
+  overflow: auto;
+  float: left;
+}
+
+.userInput {
+  margin-left: 375px;
+  height:700px;
+}
+
+.separation {
+  padding: 20px;
+  text-align:center;
+}
+
+tr:nth-child(even) {
+    background-color: #0B2A38;
+}
+
+tr:nth-child(odd) {
+    background-color: #167368;
+}
+
+h3 {
+  text-align:center;
 }

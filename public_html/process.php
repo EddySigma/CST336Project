@@ -18,6 +18,12 @@
 
 <body>
 
+<div class="container">
+	<div class="titleSection">
+		<h1>Top Singles - Online Store</h1>
+	</div>
+	<div class='songDisplay'>
+
 <?php
 
 	include('functions.php');
@@ -53,10 +59,11 @@
 
 	}
 ?>
+	</div>
 
-</div>
  
 <center><a href="javascript:history.go(-1)">Go back to Music Store</center>
+</div>
 </body>
 
 </html>

@@ -30,33 +30,6 @@
 			<div class="titleSection">
 				<h1>Top Singles - Online Store</h1>
 			</div>
-			
-			<form action="" method="POST"  >
-			
-				Search artist: 
-				<input type="text" name="artistName">
-			
-			  	Select Genre: 
-			  	<select name="genre">
-					<option disabled selected value> -- select an option -- </option>
-				
-				    <option value=1>Hip-Hop</option>
-				    <option value=2>Rock</option>
-				    <option value=3>Pop</option>
-				    <option value=4>Country</option>
-			  	</select>
-			
-			   	Sort by price: 
-			   	<select name="sortPrice">
-					<option disabled selected value> -- select an option -- </option>
-			
-			    	<option value="desc">high-low</option>
-			    	<option value="asc">low-high</option>
-			  	</select>
-			
-			  	<br /><br />
-			  	<input type="submit" name="submit" value="Submit">
-			</form>
 		</div>
 
 		<!--
@@ -122,13 +95,48 @@
 				$sql .= " ORDER BY Songs.name";
 			
 			echo "<div class='songDisplay'>";
+			echo "<div class='tableContainer'>";
+			echo "<h3> Select from the following</h3>";
 			displayData($dbConn, $sql);
-			
-			echo "</form>";
 			echo "</div>";
-			
+			echo "
+			<div class='userInput'>
+				<div class='separation'>
+					<form action='' method='POST'  >
+					
+						Search artist: 
+						<input type='text' name='artistName'>
+						<br />
+						
+					  	Select Genre: 
+					  	<select name='genre'>
+							<option disabled selected value> -- select an option -- </option>
+						
+						    <option value=1>Hip-Hop</option>
+						    <option value=2>Rock</option>
+						    <option value=3>Pop</option>
+						    <option value=4>Country</option>
+					  	</select>
+						<br />
+						
+					   	Sort by price: 
+					   	<select name='sortPrice'>
+							<option disabled selected value> -- select an option -- </option>
+					
+					    	<option value='desc'>high-low</option>
+					    	<option value='asc'>low-high</option>
+					  	</select>
+					
+					  	<br /><br />
+					  	<input type='submit' name='submit' value='Submit'>
+					</form>
+				</div>
+			</div>
+			";
 			echo "<div class='submitSection'>";
 			echo "<input type='submit' name='buy' value='Buy Now'>";
+			echo "</div>";
+			echo "</form>";
 			echo "</div>";
 			
 			
@@ -137,5 +145,6 @@
 				return isset($_POST['genre']) || isset($_POST['sortPrice']) || isset($_POST['artistName']);
 			}
 		?>
+		
 	</body>
 </html>
