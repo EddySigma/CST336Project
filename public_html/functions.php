@@ -11,7 +11,7 @@ function connectToDatabase()
 {
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "fuckyeah";
 	$dbName = "MusicStore";
 
 	$dbConn = new PDO("mysql:host=$servername;dbname=$dbName",
