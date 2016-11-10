@@ -1,4 +1,9 @@
 <?php
+// LINK TO GITHUB: https://github.com/EddySigma/ShoppingCarProject
+// LINK TO TRELLO: https://trello.com/b/ISB224wM/team-project
+// LINK TO SCHEME, STORY, AND MOCKUP: https://docs.google.com/document/d/1bLvSXYz2f04fX__txUaq6gRwudEKtYop4M7HvVejhRk/edit?usp=sharing
+
+
 
 // Used to connect to database.
 // Edit as needed

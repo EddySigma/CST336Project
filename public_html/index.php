@@ -1,5 +1,8 @@
 <?php
-
+	// LINK TO GITHUB: https://github.com/EddySigma/ShoppingCarProject
+	// LINK TO TRELLO: https://trello.com/b/ISB224wM/team-project
+	// LINK TO SCHEME, STORY, AND MOCKUP: 
+	
 	ini_set('session.cache_limiter','public');
 	session_cache_limiter(false);
 	session_start();
