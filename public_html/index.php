@@ -1,8 +1,7 @@
 <?php
 	// LINK TO GITHUB: https://github.com/EddySigma/ShoppingCarProject
 	// LINK TO TRELLO: https://trello.com/b/ISB224wM/team-project
-	// LINK TO SCHEME, STORY, AND MOCKUP: 
-	
+	// LINK TO SCHEME
 	ini_set('session.cache_limiter','public');
 	session_cache_limiter(false);
 	session_start();
@@ -24,7 +23,6 @@
 		<link rel="icon"
 		      type="image/png"
 		      href="images/favicon.ico">
-		<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	</head>
 	<link rel="stylesheet" type="text/css" href="css/theme.css">
 	
