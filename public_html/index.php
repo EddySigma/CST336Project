@@ -1,17 +1,12 @@
 <?php
-	// LINK TO GITHUB: https://github.com/EddySigma/ShoppingCarProject
-	// LINK TO TRELLO: https://trello.com/b/ISB224wM/team-project
-	// LINK TO SCHEME
+
 	ini_set('session.cache_limiter','public');
 	session_cache_limiter(false);
 	session_start();
 
-	if (isset($_POST['buy']))
+	if (isset($_POST['songs']))
 	{
-		if(isset($_POST['songs']))
-			$_SESSION['shoppingCart'] = $_POST['songs'];
-		else
-			$_SESSION['shoppingCart'] = array();
+		$_SESSION['shoppingCart'] = $_POST['songs'];
 		header("Location: process.php");
 	}
 
@@ -23,6 +18,7 @@
 		<link rel="icon"
 		      type="image/png"
 		      href="images/favicon.ico">
+		<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	</head>
 	<link rel="stylesheet" type="text/css" href="css/theme.css">
 	
@@ -34,38 +30,10 @@
 			<div class="titleSection">
 				<h1>Top Singles - Online Store</h1>
 			</div>
-			
-			<form action="" method="POST"  >
-			
-				Search artist: 
-				<input type="text" name="artistName">
-			
-			  	Select Genre: 
-			  	<select name="genre">
-					<option disabled selected value> -- select an option -- </option>
-				
-				    <option value=1>Hip-Hop</option>
-				    <option value=2>Rock</option>
-				    <option value=3>Pop</option>
-				    <option value=4>Country</option>
-			  	</select>
-			
-			   	Sort by price: 
-			   	<select name="sortPrice">
-					<option disabled selected value> -- select an option -- </option>
-			
-			    	<option value="desc">high-low</option>
-			    	<option value="asc">low-high</option>
-			  	</select>
-			
-			  	<br /><br />
-			  	<input type="submit" name="submit" value="Submit">
-			</form>
 		</div>
 
 		<!--
-		FORM SEARCH - END			echo "<div class='songDisplay'>";
-
+		FORM SEARCH - END
 		-->
 		<?php
 			include ('functions.php');
@@ -94,7 +62,7 @@
 			// Logic to deal with queries selected
 			if (isset($_POST['submit']) && atLeastOne())
 			{
-				if (isset($_POST['genre']))
+				if (isset($_POST['genre']) && $_POST['genre'] != "")
 				{
 					$sql.= " WHERE Genres.genreID=" . $_POST['genre'];
 					$genreSet = true;
@@ -127,13 +95,49 @@
 				$sql .= " ORDER BY Songs.name";
 			
 			echo "<div class='songDisplay'>";
+			echo "<div class='tableContainer'>";
+			echo "<h3> Select from the following</h3>";
 			displayData($dbConn, $sql);
-			
-			echo "</div>
-			 <div class='submitSection'>
-			 <input type='submit' name='buy' value='Buy Now'>
-			 </div>
-			 </form>";
+			echo "</div>";
+			echo "
+			<div class='userInput'>
+				<div class='separation'>
+					<form action='' method='POST'  >
+					
+						Search artist: 
+						<input type='text' name='artistName'>
+						<br />
+						
+					  	Select Genre: 
+					  	<select name='genre'>
+							<option disabled selected value> -- select an option -- </option>
+						
+						    <option value=1>Hip-Hop</option>
+						    <option value=2>Rock</option>
+						    <option value=3>Pop</option>
+						    <option value=4>Country</option>
+					  	</select>
+						<br />
+						
+					   	Sort by price: 
+					   	<select name='sortPrice'>
+							<option disabled selected value> -- select an option -- </option>
+					
+					    	<option value='desc'>high-low</option>
+					    	<option value='asc'>low-high</option>
+					  	</select>
+					
+					  	<br /><br />
+					  	<input type='submit' name='submit' value='Submit'>
+					</form>
+				</div>
+			</div>
+			";
+			echo "<div class='submitSection'>";
+			echo "<input type='submit' name='buy' value='Buy Now'>";
+			echo "</div>";
+			echo "</form>";
+			echo "</div>";
 			
 			
 			function atLeastOne()
@@ -141,6 +145,6 @@
 				return isset($_POST['genre']) || isset($_POST['sortPrice']) || isset($_POST['artistName']);
 			}
 		?>
+		
 	</body>
 </html>
-

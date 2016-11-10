@@ -1,8 +1,5 @@
 <?php
-	// LINK TO GITHUB: https://github.com/EddySigma/ShoppingCarProject
-	// LINK TO TRELLO: https://trello.com/b/ISB224wM/team-project
-	// LINK TO SCHEME, STORY, AND MOCKUP: https://docs.google.com/document/d/1bLvSXYz2f04fX__txUaq6gRwudEKtYop4M7HvVejhRk/edit?usp=sharing
-	
+
 	 // starting the session
 	session_start();
 ?>
@@ -12,6 +9,7 @@
 <link rel="icon"
       type="image/png"
       href="images/favicon.ico">
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <title>Shopping Cart</title>
 <link rel="stylesheet" type="text/css" href="css/theme.css">
@@ -20,6 +18,12 @@
 
 <body>
 
+<div class="container">
+	<div class="titleSection">
+		<h1>Top Singles - Online Store</h1>
+	</div>
+	<div class='songDisplay'>
+
 <?php
 
 	include('functions.php');
@@ -27,6 +31,12 @@
 	
 	// using sessions
 	$songs = $_SESSION['shoppingCart'];
+	
+	if(count($songs) == 0)
+		echo "<center><h1>Nothing selected</h1></center>";
+
+	else
+	{
 
 		// to get the songs that were selected
 		$placeholders  = implode(",",$songs);
@@ -43,32 +53,17 @@
 				INNER JOIN Catalog ON Catalog.songID = Songs.songID
 				WHERE Catalog.songID IN ($placeholders)";
 
-		echo "<center><h2 style='background-color:#911C16;'>Here is your shopping cart</h2></center>";
-					echo "<div class='songDisplay'>";
+		echo "<center><h3>Here is your shopping cart</h3></center>";
+		$total = displayShoppingCart($dbConn,$sql);
+		echo "<center><h3>Total:$$total</h3></center>";
 
-	if(count($songs) == 0)
-		echo "<center><h1>Nothing selected</h1></center>";
-		
-		
-			
-
-	else {
-		
-				$total = displayShoppingCart($dbConn,$sql);
-
-		echo "<div class='outer'><center><div class='box'>Total:$$total</div></center></div>";
 	}
-	
-	echo "<center><a href='javascript:history.go(-1)'><h3>Go back to Music Store</h3></center>";
-
-	echo "</div>";
-
-	
 ?>
+	</div>
 
-</div>
  
+<center><a href="javascript:history.go(-1)">Go back to Music Store</center>
+</div>
 </body>
 
 </html>
-
